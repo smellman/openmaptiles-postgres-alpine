@@ -52,5 +52,6 @@ RUN set -ex \
     && rm -rf /usr/src/mapnik-german-l10n \
     && apk del .fetch-deps .build-deps
     
-COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/10_postgis.sh
+# Overwrite postgis.sh
+COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
 
