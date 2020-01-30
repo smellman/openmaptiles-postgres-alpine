@@ -1,4 +1,4 @@
-FROM smellman/postgis:12-3-alpine
+FROM smellman/postgis:12-master-alpine
 
 RUN set -ex \
     \
