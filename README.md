@@ -8,7 +8,8 @@ https://github.com/openmaptiles/openmaptiles-tools/tree/master/docker/postgis
 
 ## Test for
 
-- postgres: https://github.com/docker-library/postgres/pull/657
-  - [smellman/postgres:12-alpine](https://hub.docker.com/r/smellman/postgres) image
-- postgres+postgis: https://github.com/appropriate/docker-postgis/pull/151
-  - [smellman/postgis:12-3-alpine](https://hub.docker.com/r/smellman/postgis) image
+- ~~postgres: https://github.com/docker-library/postgres/pull/657~~
+  - ~~[smellman/postgres:12-alpine](https://hub.docker.com/r/smellman/postgres) image~~
+- ~~postgres+postgis: https://github.com/appropriate/docker-postgis/pull/151~~
+  - ~~[smellman/postgis:12-3-alpine](https://hub.docker.com/r/smellman/postgis) image~~
+- postgresql 12 + postgis master branch: https://github.com/smellman/docker-postgis/tree/postgres-12-postgis-master/12-master/alpine
