@@ -4,6 +4,7 @@ set -o pipefail
 set -o nounset
 
 PGUSER="$POSTGRES_USER" psql --dbname="$POSTGRES_DB" <<-'EOSQL'
+    DROP DATABASE IF EXISTS template_postgis;
     CREATE DATABASE template_postgis;
     UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis';
 EOSQL

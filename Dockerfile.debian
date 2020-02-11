@@ -1,0 +1,54 @@
+FROM smellman/postgis:12-master
+
+RUN set -ex \
+    \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        openssl \
+        libkakasi2-dev \
+        wget \
+        make \
+        gcc \
+        g++ \
+        libicu-dev \
+        libutf8proc-dev \
+        postgresql-server-dev-12 \
+        curl \
+    && mkdir -p /usr/src \
+    && cd /usr/src \
+    && wget -O mapnik-german-l10n.tar.gz "https://github.com/giggls/mapnik-german-l10n/archive/v2.5.8.tar.gz" \
+    && mkdir -p /usr/src/mapnik-german-l10n \
+    && tar \
+        --extract \
+        --file mapnik-german-l10n.tar.gz \
+        --directory /usr/src/mapnik-german-l10n \
+        --strip-components 1 \
+    && rm mapnik-german-l10n.tar.gz \
+    && cd /usr/src/mapnik-german-l10n \
+    # pass pandoc
+    && touch INSTALL.html && touch INSTALL \
+    && touch README.html && touch README \
+    && touch TODO.html && touch TODO \
+    && make \
+    && make install \
+    && rm -rf /usr/src/mapnik-german-l10n \
+    && apt-get purge -y \
+      ca-certificates \
+      libkakasi2-dev \
+      wget \
+      make \
+      gcc \
+      g++ \
+      libicu-dev \
+      libutf8proc-dev \
+      postgresql-server-dev-12 \
+      curl \
+      clang-7 \
+      cpp \
+      cpp-8 \
+    && rm -rf /var/lib/apt/lists/*
+    
+# Overwrite postgis.sh
+COPY ./initdb-postgis.sh /docker-entrypoint-initdb.d/postgis.sh
+
